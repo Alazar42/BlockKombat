@@ -4,18 +4,22 @@
 [ext_resource type="Script" uid="uid://b5b82t66f0vx3" path="res://Scripts/BoxingRing/battle_manager.gd" id="1_manager"]
 [ext_resource type="Script" uid="uid://buo2nrqch6puj" path="res://Scripts/BoxingRing/battle_camera.gd" id="2_camera"]
 [ext_resource type="PackedScene" uid="uid://b5hudbattle01" path="res://Scenes/UI/battle_hud.tscn" id="3_hud"]
+[ext_resource type="Script" uid="uid://djvxlyk27vky7" path="res://Scripts/BoxingRing/audience_manager.gd" id="4_audience"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2qyfu"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_08kki"]
-sky_material = SubResource("ProceduralSkyMaterial_2qyfu")
-
-[sub_resource type="Environment" id="Environment_mqsgl"]
-background_mode = 2
-sky = SubResource("Sky_08kki")
-tonemap_mode = 2
+[sub_resource type="Environment" id="Environment_arena"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.06, 1)
+background_energy_multiplier = 0.39
+ambient_light_source = 2
+ambient_light_color = Color(0.18, 0.18, 0.22, 1)
+ambient_light_energy = 0.55
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.04, 0.04, 0.06, 1)
+fog_density = 1.0
+fog_sky_affect = 0.735
+fog_depth_begin = 9.0
+fog_depth_end = 26.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3rrso"]
 size = Vector3(19.458649, 2.3770752, 19.458649)
@@ -696,13 +700,8 @@ data = PackedVector3Array(0, -1, -1, 0.1951, 1, -0.9808, 0, 1, -1, 0, -1, -1, 0.
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
 script = ExtResource("1_manager")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2000008100]
-environment = SubResource("Environment_mqsgl")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=637655396]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-visible = false
-shadow_enabled = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=990001]
+environment = SubResource("Environment_arena")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1642141185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095718384, -1.1830444, 0.016738892)
@@ -914,3 +913,12 @@ script = ExtResource("2_camera")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=484831788]
 
 [node name="BattleHUD" parent="CanvasLayer" unique_id=711474771 instance=ExtResource("3_hud")]
+
+[node name="Audience" type="Node3D" parent="." unique_id=987654321]
+script = ExtResource("4_audience")
+
+[node name="ArenaRingLight" type="DirectionalLight3D" parent="." unique_id=990002]
+transform = Transform3D(0.9659258, 0.1830127, -0.1830127, 0, 0.7071068, 0.7071068, 0.258819, -0.6830127, 0.6830127, 0, 10, 0)
+light_color = Color(0.98, 0.96, 0.93, 1)
+light_energy = 1.35
+shadow_enabled = true

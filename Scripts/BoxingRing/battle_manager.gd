@@ -4,6 +4,7 @@ extends Node3D
 @onready var p2_combatant: CharacterBody3D = $Characters/Combatant
 @onready var battle_camera: Camera3D = $BattleCamera
 @onready var battle_hud = $CanvasLayer/BattleHUD
+@onready var audience = get_node_or_null("Audience")
 
 func _ready() -> void:
 	# Ensure default characters if starting directly in this scene
@@ -42,16 +43,30 @@ func _ready() -> void:
 		p1_fighter.set_target(p2_combatant)
 		p2_combatant.set_target(p1_fighter)
 
-	# Hook camera shake on hits
-	if battle_camera and battle_camera.has_method("add_trauma"):
-		if p1_fighter:
-			p1_fighter.character_hit.connect(func(_dmg, is_crit, _pos):
+	# Hook camera shake and audience cheering on hits
+	if p1_fighter:
+		p1_fighter.character_hit.connect(func(_dmg, is_crit, _pos):
+			if battle_camera and battle_camera.has_method("add_trauma"):
 				battle_camera.add_trauma(0.35 if is_crit else 0.15)
-			)
-		if p2_combatant:
-			p2_combatant.character_hit.connect(func(_dmg, is_crit, _pos):
+			if is_crit and audience and audience.has_method("trigger_crowd_cheer"):
+				audience.trigger_crowd_cheer()
+		)
+		p1_fighter.character_died.connect(func(_c):
+			if audience and audience.has_method("trigger_crowd_cheer"):
+				audience.trigger_crowd_cheer()
+		)
+
+	if p2_combatant:
+		p2_combatant.character_hit.connect(func(_dmg, is_crit, _pos):
+			if battle_camera and battle_camera.has_method("add_trauma"):
 				battle_camera.add_trauma(0.35 if is_crit else 0.15)
-			)
+			if is_crit and audience and audience.has_method("trigger_crowd_cheer"):
+				audience.trigger_crowd_cheer()
+		)
+		p2_combatant.character_died.connect(func(_c):
+			if audience and audience.has_method("trigger_crowd_cheer"):
+				audience.trigger_crowd_cheer()
+		)
 
 	# Initialize Battle HUD
 	if battle_hud and battle_hud.has_method("initialize_hud"):
