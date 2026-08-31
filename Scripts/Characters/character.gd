@@ -47,7 +47,7 @@ const CHARACTER_TEXTURES := {
 	"character_r": "res://Assets/Models/KennyBlockyCharacters/Models/FBX format/Textures/texture-r.png"
 }
 
-# Preloaded Ability Prefabs (No dynamic code mesh generation)
+# Preloaded Ability Prefabs
 const PREFAB_FIREBALL = preload("res://Scenes/Abilities/fireball.tscn")
 const PREFAB_ICE_FREEZE = preload("res://Scenes/Abilities/ice_freeze.tscn")
 const PREFAB_HEAL_AURA = preload("res://Scenes/Abilities/heal_aura.tscn")
@@ -57,7 +57,7 @@ const PREFAB_GROUND_SMASH = preload("res://Scenes/Abilities/ground_smash.tscn")
 const PREFAB_LASER_BEAM = preload("res://Scenes/Abilities/laser_beam.tscn")
 const PREFAB_SHIELD_DOME = preload("res://Scenes/Abilities/shield_dome.tscn")
 
-# Material Cache for smooth non-blocking loading
+# Material Cache for smooth loading
 static var _material_cache: Dictionary = {}
 
 # Movement Constants
@@ -73,6 +73,10 @@ const PUNCH_RANGE = 2.6
 const KICK_RANGE = 3.0
 const BLOCK_DAMAGE_RATIO = 0.2
 const ANIMATION_BLEND_TIME = 0.12
+
+# Special Ability 10-Hit Meter
+const MAX_SPECIAL_METER: float = 10.0
+var special_meter: float = 0.0
 
 # State Variables
 enum CharacterState {
@@ -99,9 +103,6 @@ var last_attack_time: float = 0.0
 var combo_reset_time: float = 1.0
 var attack_cooldown: float = 0.28
 
-var special_cooldown: float = 6.0
-var last_special_time: float = -10.0
-
 var speed_multiplier: float = 1.0
 var attack_multiplier: float = 1.0
 var defense_multiplier: float = 1.0
@@ -112,6 +113,7 @@ var target_node: CharacterBody3D
 
 # Signals
 signal health_changed(current_hp: float, max_hp: float)
+signal special_meter_changed(current_meter: float, max_meter: float)
 signal state_changed(new_state: CharacterState)
 signal combo_updated(combo_count: int)
 signal character_died(character: CharacterBody3D)
@@ -121,6 +123,7 @@ func _ready() -> void:
 	find_and_cache_animation_player()
 	load_character()
 	emit_signal("health_changed", health, max_health)
+	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
 
 func get_forward_vector() -> Vector3:
 	return global_transform.basis.x.normalized()
@@ -199,10 +202,15 @@ func apply_character_data(char_data: Dictionary) -> void:
 	
 	health = 250.0
 	max_health = 250.0
+	special_meter = 0.0
 	emit_signal("health_changed", health, max_health)
+	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
+
+func add_special_meter(amount: float) -> void:
+	special_meter = clamp(special_meter + amount, 0.0, MAX_SPECIAL_METER)
+	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
 
 func _physics_process(delta: float) -> void:
-	# Ignore combat physics in character select showcase
 	var p = get_parent()
 	if p and (p.name == "CharacterShowcase" or p.name == "CharacterStand"):
 		return
@@ -236,7 +244,7 @@ func _physics_process(delta: float) -> void:
 		handle_player_movement(delta)
 		handle_player_combat(delta)
 	
-	# Clamp position to stay inside ring
+	# Clamp position inside ring
 	global_position.x = clamp(global_position.x, -RING_LIMIT, RING_LIMIT)
 	global_position.z = clamp(global_position.z, -RING_LIMIT, RING_LIMIT)
 	
@@ -261,7 +269,6 @@ func handle_player_movement(delta: float) -> void:
 		velocity.x = move_vec.x * move_speed
 		velocity.z = move_vec.z * move_speed
 
-		# Rotate towards movement direction (or face opponent if close)
 		var target_rot = get_facing_rotation(move_vec)
 		if target_node and is_instance_valid(target_node) and global_position.distance_to(target_node.global_position) < 4.0:
 			var opp_dir = (target_node.global_position - global_position).normalized()
@@ -279,7 +286,6 @@ func handle_player_movement(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, move_speed * 8.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, move_speed * 8.0 * delta)
 
-		# Face opponent when stationary if available
 		if target_node and is_instance_valid(target_node) and target_node.current_state != CharacterState.DEAD:
 			var opp_dir = (target_node.global_position - global_position).normalized()
 			opp_dir.y = 0
@@ -301,7 +307,7 @@ func handle_player_combat(_delta: float) -> void:
 	if is_blocking:
 		return
 
-	# Special Attack
+	# Special Attack (Requires 10 hits full meter)
 	if Input.is_action_just_pressed("special") and can_special():
 		execute_special_attack()
 		return
@@ -333,8 +339,7 @@ func can_attack() -> bool:
 func can_special() -> bool:
 	if not can_attack():
 		return false
-	var current_time = Time.get_ticks_msec() / 1000.0
-	return (current_time - last_special_time >= special_cooldown)
+	return (special_meter >= MAX_SPECIAL_METER)
 
 # Combat Functions
 func execute_punch() -> void:
@@ -343,7 +348,6 @@ func execute_punch() -> void:
 	combo_count += 1
 	emit_signal("combo_updated", combo_count)
 	
-	# Face opponent immediately upon attack
 	_ensure_target()
 	if target_node and is_instance_valid(target_node):
 		var dir = (target_node.global_position - global_position).normalized()
@@ -389,10 +393,11 @@ func execute_kick() -> void:
 		set_state(CharacterState.IDLE)
 		play_animation("idle", ANIMATION_BLEND_TIME)
 
-# Special Attack Logic using Instantiated Prefabs
+# Special Attack Logic
 func execute_special_attack() -> void:
 	set_state(CharacterState.SPECIAL)
-	last_special_time = Time.get_ticks_msec() / 1000.0
+	special_meter = 0.0
+	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
 	_ensure_target()
 	
 	if target_node and is_instance_valid(target_node):
@@ -402,7 +407,6 @@ func execute_special_attack() -> void:
 			rotation.y = get_facing_rotation(dir)
 
 	var fwd = get_forward_vector()
-	# Spawn directly centered at player with NO sideways offset
 	var spawn_pos = global_position + Vector3(0, 1.1, 0) + fwd * 0.8
 	var parent_scene = get_parent()
 
@@ -574,6 +578,7 @@ func check_and_apply_hit(max_range: float, raw_damage: float, attack_type: Strin
 		if dot > -0.2 or distance <= 2.0:
 			var hit_dir = dir_to_target
 			target_node.take_damage(raw_damage, attack_type, hit_dir, knockback_power)
+			add_special_meter(1.0) # Adds 1 hit towards 10-hit super meter!
 			emit_signal("character_hit", raw_damage, combo_count >= 3, target_node.global_position + Vector3(0, 1.2, 0))
 
 func start_blocking() -> void:
@@ -614,6 +619,9 @@ func take_damage(raw_damage: float, attack_type: String = "unknown", from_dir: V
 			velocity += from_dir * knockback
 		combo_count = 0
 		emit_signal("combo_updated", 0)
+	
+	# Gain 0.5 meter when taking damage
+	add_special_meter(0.5)
 	
 	health -= actual_damage
 	health = max(health, 0.0)

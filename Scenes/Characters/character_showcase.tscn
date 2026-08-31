@@ -1894,7 +1894,7 @@ shadow_enabled = true
 [node name="CharacterSelectUI" parent="CanvasLayer" unique_id=711474770 instance=ExtResource("4_wglib")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1217162952]
-transform = Transform3D(1, 0, 0, 0, 0.98934597, 0.14558358, 0, -0.14558358, 0.98934597, 0, 3.6613495, 4.4741015)
+transform = Transform3D(1, 0, 0, 0, 0.98934597, 0.14558358, 0, -0.14558358, 0.98934597, 0, 3.8, 5.6)
 
 [node name="CharacterStand" type="Node3D" parent="." unique_id=454466093]
 

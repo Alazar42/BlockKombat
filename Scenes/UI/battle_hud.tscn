@@ -43,8 +43,20 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill_p2"]
-bg_color = Color(0.88, 0.88, 0.88, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp_back"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp_fill_p1"]
+bg_color = Color(1, 0.85, 0.15, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -114,7 +126,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.02
 anchor_right = 1.0
-anchor_bottom = 0.14
+anchor_bottom = 0.16
 offset_left = 30.0
 offset_right = -30.0
 grow_horizontal = 2
@@ -136,7 +148,7 @@ stretch_mode = 5
 [node name="P1Info" type="VBoxContainer" parent="TopHUD/P1Container" unique_id=1010105]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="TopHUD/P1Container/P1Info" unique_id=1010106]
@@ -147,7 +159,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "BLOCK TITAN"
 
 [node name="HealthBar" type="ProgressBar" parent="TopHUD/P1Container/P1Info" unique_id=1010107]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill_p1")
@@ -164,6 +176,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_hp_lag")
 value = 100.0
+show_percentage = false
+
+[node name="SpecialBar" type="ProgressBar" parent="TopHUD/P1Container/P1Info" unique_id=1010130]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sp_fill_p1")
+max_value = 10.0
+value = 0.0
 show_percentage = false
 
 [node name="CenterContainer" type="Panel" parent="TopHUD" unique_id=1010109]
@@ -193,7 +214,7 @@ theme_override_constants/separation = 10
 [node name="P2Info" type="VBoxContainer" parent="TopHUD/P2Container" unique_id=1010112]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="TopHUD/P2Container/P2Info" unique_id=1010113]
@@ -205,10 +226,10 @@ text = "CYBER CHAMP"
 horizontal_alignment = 2
 
 [node name="HealthBar" type="ProgressBar" parent="TopHUD/P2Container/P2Info" unique_id=1010114]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_hp_back")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill_p2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill_p1")
 value = 100.0
 show_percentage = false
 
@@ -222,6 +243,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_hp_lag")
 value = 100.0
+show_percentage = false
+
+[node name="SpecialBar" type="ProgressBar" parent="TopHUD/P2Container/P2Info" unique_id=1010131]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sp_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sp_fill_p1")
+max_value = 10.0
+value = 0.0
 show_percentage = false
 
 [node name="IconRect" type="TextureRect" parent="TopHUD/P2Container" unique_id=1010116]

@@ -6,14 +6,15 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_laser"]
 render_priority = 1
 shader = ExtResource("2_shader")
-shader_parameter/beam_color = Color(0.2, 0.7, 1, 0.9)
+shader_parameter/beam_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/core_color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(0.02, 0.02, 0.02, 1)
 shader_parameter/pulse_speed = 12.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_beam"]
 material = SubResource("ShaderMaterial_laser")
-top_radius = 0.25
-bottom_radius = 0.25
+top_radius = 0.3
+bottom_radius = 0.3
 height = 10.0
 
 [node name="LaserBeam" type="Node3D" unique_id=206001]

@@ -3,13 +3,24 @@
 [ext_resource type="Script" uid="uid://c8fbscript01" path="res://Scripts/Abilities/fireball.gd" id="1_script"]
 [ext_resource type="Shader" uid="uid://b0fbshader01" path="res://Assets/Shaders/fireball.gdshader" id="2_shader"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_outline"]
+albedo_color = Color(0.02, 0.02, 0.02, 1)
+roughness = 0.9
+
+[sub_resource type="SphereMesh" id="SphereMesh_outline"]
+material = SubResource("StandardMaterial3D_outline")
+radius = 0.44
+height = 0.88
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb"]
 render_priority = 1
 shader = ExtResource("2_shader")
-shader_parameter/core_color = Color(1, 0.9, 0.3, 1)
-shader_parameter/flame_color = Color(1, 0.25, 0.05, 1)
-shader_parameter/frequency = 12.0
-shader_parameter/speed = 5.0
+shader_parameter/core_color = Color(1, 0.9, 0.2, 1)
+shader_parameter/flame_color = Color(1, 0.2, 0, 1)
+shader_parameter/frequency = 10.0
+shader_parameter/outline_color = Color(0.05, 0.05, 0.05, 1)
+shader_parameter/outline_threshold = 0.55
+shader_parameter/speed = 4.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_fb"]
 material = SubResource("ShaderMaterial_fb")
@@ -17,8 +28,8 @@ radius = 0.4
 height = 0.8
 
 [sub_resource type="SphereMesh" id="SphereMesh_core"]
-radius = 0.2
-height = 0.4
+radius = 0.22
+height = 0.44
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_core"]
 albedo_color = Color(1, 1, 0.6, 1)
@@ -28,6 +39,9 @@ emission_energy_multiplier = 4.0
 
 [node name="Fireball" type="Node3D" unique_id=200001]
 script = ExtResource("1_script")
+
+[node name="OutlineMesh" type="MeshInstance3D" parent="." unique_id=200005]
+mesh = SubResource("SphereMesh_outline")
 
 [node name="FlameMesh" type="MeshInstance3D" parent="." unique_id=200002]
 mesh = SubResource("SphereMesh_fb")

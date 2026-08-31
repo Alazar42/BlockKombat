@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled;
+render_mode blend_mix, depth_draw_never, cull_disabled;
 
 uniform vec4 core_color : source_color = vec4(1.0, 0.9, 0.2, 1.0);
 uniform vec4 flame_color : source_color = vec4(1.0, 0.2, 0.0, 1.0);
@@ -19,7 +19,6 @@ void fragment() {
 
     vec4 fire = mix(core_color, flame_color, clamp(fresnel * 1.2 + pulse * 0.3, 0.0, 1.0));
 
-    // Sharp black outline rim on the silhouette
     if (fresnel > outline_threshold) {
         ALBEDO = outline_color.rgb;
         EMISSION = vec3(0.0);

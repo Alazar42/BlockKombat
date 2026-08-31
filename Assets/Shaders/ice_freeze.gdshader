@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled;
+render_mode blend_mix, depth_draw_never, cull_disabled;
 
 uniform vec4 ice_color : source_color = vec4(0.15, 0.7, 1.0, 1.0);
 uniform vec4 frost_glow : source_color = vec4(0.6, 0.95, 1.0, 1.0);

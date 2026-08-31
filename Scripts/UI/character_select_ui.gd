@@ -2,145 +2,93 @@ extends Control
 
 @onready var fighter_name: Label = $FighterInfo/VBoxContainer/FighterName
 @onready var fighter_stats: VBoxContainer = $FighterInfo/VBoxContainer/FighterStats
-
 @onready var combatant_name: Label = $KombatantInfo/VBoxContainer/CombatantName
 @onready var combatant_stats: VBoxContainer = $KombatantInfo/VBoxContainer/CombatantStats
-
-@onready var fighter_panel: Panel = $FighterInfo
-@onready var combatant_panel: Panel = $KombatantInfo
-@onready var bottom_label: Label = $BottomChooseLabel
 @onready var fighters_list: ItemList = $CharacterSelectControl/Panel/FightersList
+@onready var choose_label: Label = $BottomChooseLabel
 
+# Tab Buttons for P1 and AI selection
 @onready var p1_tab_btn: Button = $SelectorTabs/P1TabButton
 @onready var ai_tab_btn: Button = $SelectorTabs/AITabButton
-@onready var start_fight_btn: Button = $StartFightButton
 
-var character_node1: CharacterBody3D
-var character_node2: CharacterBody3D
+# Active selection mode: "P1" or "AI"
+var current_selection_mode: String = "P1"
 
-var characters: Array = [
-	"character_a",
-	"character_b",
-	"character_c",
-	"character_d",
-	"character_e",
-	"character_f",
-	"character_g",
-	"character_h",
-	"character_i",
-	"character_j",
-	"character_k",
-	"character_l",
-	"character_m",
-	"character_n",
-	"character_o",
-	"character_p",
-	"character_q",
-	"character_r"
-]
-
-var current_character_chooser: String = "Player1"
+var selected_p1_index: int = 0
+var selected_p2_index: int = 5
 
 func _ready() -> void:
-	# Find 3D preview character nodes in showcase scene
-	character_node1 = get_parent().get_parent().get_node_or_null("Character1")
-	character_node2 = get_parent().get_parent().get_node_or_null("Character2")
-	if not character_node1:
-		character_node1 = get_tree().current_scene.get_node_or_null("Character1")
-	if not character_node2:
-		character_node2 = get_tree().current_scene.get_node_or_null("Character2")
+	# Populate ItemList with 18 characters
+	fighters_list.clear()
+	for i in range(Data.characters.size()):
+		var char_data = Data.characters[i]
+		var icon_tex = load(char_data.icon) if ResourceLoader.exists(char_data.icon) else null
+		fighters_list.add_item(char_data.name, icon_tex)
 
-	# Initialize default characters
-	if Data.player1_character.is_empty():
-		Data.player1_character = Data.characters[0]
-	if Data.player2_character.is_empty():
-		Data.player2_character = Data.characters[5]
-
-	if character_node1:
-		character_node1.character_type = characters[0]
-		character_node1.load_character()
-		character_node1.play_animation("emote-yes", 0.1)
-			
-	if character_node2:
-		character_node2.character_type = characters[5]
-		character_node2.load_character()
-		character_node2.play_animation("idle", 0.1)
-
-	update_ui(Data.player1_character, "Fighter")
-	update_ui(Data.player2_character, "Combatant")
+	# Initial character setups
+	_update_p1_selection(selected_p1_index)
+	_update_p2_selection(selected_p2_index)
 	
-	_update_active_chooser_visuals()
+	_on_p1_tab_button_pressed()
+
+func _get_showcase_scene() -> Node:
+	var p = get_parent()
+	while p:
+		if p.has_method("set_fighter_character"):
+			return p
+		p = p.get_parent()
+	return null
+
+func _update_p1_selection(index: int) -> void:
+	selected_p1_index = index
+	var char_data = Data.characters[index]
+	update_ui(char_data, "Fighter")
 	
-	fighters_list.select(0)
-	fighters_list.grab_focus()
+	var showcase = _get_showcase_scene()
+	if showcase:
+		showcase.set_fighter_character(char_data)
 
-func _update_active_chooser_visuals() -> void:
-	if current_character_chooser == "Player1":
-		bottom_label.text = "SELECT YOUR FIGHTER (PLAYER 1)"
-		if p1_tab_btn:
-			p1_tab_btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		if ai_tab_btn:
-			ai_tab_btn.modulate = Color(0.6, 0.6, 0.6, 0.8)
-		fighter_panel.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		combatant_panel.modulate = Color(0.65, 0.65, 0.65, 0.8)
-	else:
-		bottom_label.text = "SELECT ENEMY COMBATANT (AI)"
-		if p1_tab_btn:
-			p1_tab_btn.modulate = Color(0.6, 0.6, 0.6, 0.8)
-		if ai_tab_btn:
-			ai_tab_btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		fighter_panel.modulate = Color(0.65, 0.65, 0.65, 0.8)
-		combatant_panel.modulate = Color(1.0, 1.0, 1.0, 1.0)
-
-func _on_fighters_list_item_selected(index: int) -> void:
-	if index < 0 or index >= Data.characters.size():
-		return
-		
-	if current_character_chooser == "Player1":
-		Data.player1_character = Data.characters[index]
-		if character_node1:
-			character_node1.character_type = characters[index]
-			character_node1.load_character()
-			character_node1.play_animation("emote-yes", 0.1)
-		update_ui(Data.player1_character, "Fighter")
-	else:
-		Data.player2_character = Data.characters[index]
-		if character_node2:
-			character_node2.character_type = characters[index]
-			character_node2.load_character()
-			character_node2.play_animation("emote-yes", 0.1)
-		update_ui(Data.player2_character, "Combatant")
-
-func _on_fighters_list_item_activated(index: int) -> void:
-	if current_character_chooser == "Player1":
-		_set_chooser("Player2")
-		var p2_idx = Data.player2_character.get("id", 5)
-		fighters_list.select(p2_idx)
-	else:
-		_on_start_fight_button_pressed()
+func _update_p2_selection(index: int) -> void:
+	selected_p2_index = index
+	var char_data = Data.characters[index]
+	update_ui(char_data, "Combatant")
+	
+	var showcase = _get_showcase_scene()
+	if showcase:
+		showcase.set_combatant_character(char_data)
 
 func _on_p1_tab_button_pressed() -> void:
-	_set_chooser("Player1")
-	var p1_idx = Data.player1_character.get("id", 0)
-	fighters_list.select(p1_idx)
+	current_selection_mode = "P1"
+	choose_label.text = "SELECT YOUR FIGHTER (PLAYER 1)"
+	p1_tab_btn.modulate = Color(1.2, 1.2, 1.2, 1.0)
+	ai_tab_btn.modulate = Color(0.7, 0.7, 0.7, 0.8)
+	fighters_list.select(selected_p1_index)
+	fighters_list.ensure_current_is_visible()
 
 func _on_ai_tab_button_pressed() -> void:
-	_set_chooser("Player2")
-	var p2_idx = Data.player2_character.get("id", 5)
-	fighters_list.select(p2_idx)
+	current_selection_mode = "AI"
+	choose_label.text = "SELECT OPPONENT COMBATANT (AI)"
+	p1_tab_btn.modulate = Color(0.7, 0.7, 0.7, 0.8)
+	ai_tab_btn.modulate = Color(1.2, 1.2, 1.2, 1.0)
+	fighters_list.select(selected_p2_index)
+	fighters_list.ensure_current_is_visible()
 
-func _set_chooser(chooser: String) -> void:
-	current_character_chooser = chooser
-	_update_active_chooser_visuals()
+func _on_fighters_list_item_selected(index: int) -> void:
+	if current_selection_mode == "P1":
+		_update_p1_selection(index)
+	else:
+		_update_p2_selection(index)
+
+func _on_fighters_list_item_activated(index: int) -> void:
+	if current_selection_mode == "P1":
+		_update_p1_selection(index)
+		_on_ai_tab_button_pressed()
+	else:
+		_update_p2_selection(index)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("cancel_player_select") or event.is_action_pressed("ui_cancel"):
-		if current_character_chooser == "Player2":
-			_set_chooser("Player1")
-			var p1_idx = Data.player1_character.get("id", 0)
-			fighters_list.select(p1_idx)
-	elif event.is_action_pressed("ui_focus_next"):
-		if current_character_chooser == "Player1":
+	if event.is_action_pressed("ui_focus_next"):
+		if current_selection_mode == "P1":
 			_on_ai_tab_button_pressed()
 		else:
 			_on_p1_tab_button_pressed()
@@ -182,4 +130,3 @@ func _on_start_fight_button_pressed() -> void:
 
 func _on_menu_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
-

@@ -6,8 +6,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_shock"]
 render_priority = 1
 shader = ExtResource("2_shader")
-shader_parameter/ring_color = Color(1, 0.85, 0.3, 1)
-shader_parameter/ring_width = 0.25
+shader_parameter/outline_color = Color(0.02, 0.02, 0.02, 1)
+shader_parameter/ring_color = Color(1, 0.8, 0.1, 1)
 
 [sub_resource type="TorusMesh" id="TorusMesh_ring"]
 material = SubResource("ShaderMaterial_shock")

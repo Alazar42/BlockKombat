@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled;
+render_mode blend_mix, depth_draw_never, cull_disabled;
 
 uniform vec4 core_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform vec4 beam_color : source_color = vec4(0.1, 0.6, 1.0, 1.0);
@@ -9,7 +9,6 @@ uniform float pulse_speed : hint_range(1.0, 20.0) = 12.0;
 void fragment() {
     float edge = abs(UV.y - 0.5) * 2.0;
     
-    // Black outline casing on outer 25% of beam cylinder
     if (edge > 0.68) {
         ALBEDO = outline_color.rgb;
         EMISSION = vec3(0.0);

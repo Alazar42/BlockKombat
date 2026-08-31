@@ -1,85 +1,103 @@
 [gd_scene format=3 uid="uid://r6fbp285dbtn"]
 
-[ext_resource type="Script" uid="uid://cl5up2na7wcln" path="res://Scripts/UI/character_select_ui.gd" id="1_067td"]
+[ext_resource type="Script" uid="uid://b5eul3v4t8751" path="res://Scripts/UI/character_select_ui.gd" id="1_067td"]
 [ext_resource type="FontFile" uid="uid://caa063h7e0ojo" path="res://Assets/Fonts/Jersey_10/Jersey10-Regular.ttf" id="2_ynyum"]
 [ext_resource type="Texture2D" uid="uid://du1s3g0mtxrj1" path="res://Assets/UI/CharacterIcons/1.jpg" id="3_ln0my"]
-[ext_resource type="Texture2D" uid="uid://ckcblfijl4tub" path="res://Assets/UI/CharacterIcons/2.jpg" id="4_067td"]
-[ext_resource type="Texture2D" uid="uid://dfgjotrjvlyik" path="res://Assets/UI/CharacterIcons/3.jpg" id="5_ln0my"]
-[ext_resource type="Texture2D" uid="uid://nyg5fwbr3fj6" path="res://Assets/UI/CharacterIcons/4.jpg" id="6_ln0my"]
-[ext_resource type="Texture2D" uid="uid://c4vs4drwwq8r5" path="res://Assets/UI/CharacterIcons/5.jpg" id="7_067td"]
+[ext_resource type="Texture2D" uid="uid://bs1p25r6072sc" path="res://Assets/UI/CharacterIcons/2.jpg" id="4_067td"]
+[ext_resource type="Texture2D" uid="uid://crf5d8o2d4k6j" path="res://Assets/UI/CharacterIcons/3.jpg" id="5_ln0my"]
+[ext_resource type="Texture2D" uid="uid://e45m22m4k6h4" path="res://Assets/UI/CharacterIcons/4.jpg" id="6_ln0my"]
+[ext_resource type="Texture2D" uid="uid://dpw538h6r1xvd" path="res://Assets/UI/CharacterIcons/5.jpg" id="7_067td"]
 [ext_resource type="Texture2D" uid="uid://m3ilgnr45rcs" path="res://Assets/UI/CharacterIcons/6.jpg" id="8_ln0my"]
-[ext_resource type="Texture2D" uid="uid://pm0n3b5232aj" path="res://Assets/UI/CharacterIcons/7.jpg" id="9_067td"]
-[ext_resource type="Texture2D" uid="uid://og3d3paqmn23" path="res://Assets/UI/CharacterIcons/8.jpg" id="10_owhay"]
-[ext_resource type="Texture2D" uid="uid://b6ht8hec0ces7" path="res://Assets/UI/CharacterIcons/9.jpg" id="11_bdkb7"]
-[ext_resource type="Texture2D" uid="uid://bugn0780l231e" path="res://Assets/UI/CharacterIcons/10.jpg" id="12_57hfu"]
-[ext_resource type="Texture2D" uid="uid://duh3ai6cg3rr7" path="res://Assets/UI/CharacterIcons/11.jpg" id="13_nl2dh"]
-[ext_resource type="Texture2D" uid="uid://brqsgwksjnvyy" path="res://Assets/UI/CharacterIcons/12.jpg" id="14_067td"]
-[ext_resource type="Texture2D" uid="uid://byxembfc8bxq6" path="res://Assets/UI/CharacterIcons/13.jpg" id="15_fa3s2"]
-[ext_resource type="Texture2D" uid="uid://csf6ad7ia8s3i" path="res://Assets/UI/CharacterIcons/14.jpg" id="16_qcinf"]
-[ext_resource type="Texture2D" uid="uid://p5b8g82a1g4" path="res://Assets/UI/CharacterIcons/15.jpg" id="17_owhay"]
-[ext_resource type="Texture2D" uid="uid://d1l1basx58bui" path="res://Assets/UI/CharacterIcons/16.jpg" id="18_bdkb7"]
-[ext_resource type="Texture2D" uid="uid://br5ulvelrwksf" path="res://Assets/UI/CharacterIcons/17.jpg" id="19_owhay"]
-[ext_resource type="Texture2D" uid="uid://bm24c5p7622rq" path="res://Assets/UI/CharacterIcons/18.jpg" id="20_57hfu"]
+[ext_resource type="Texture2D" uid="uid://c53kgy6n4n8e8" path="res://Assets/UI/CharacterIcons/7.jpg" id="9_067td"]
+[ext_resource type="Texture2D" uid="uid://bk6h7y32x1m6t" path="res://Assets/UI/CharacterIcons/8.jpg" id="10_owhay"]
+[ext_resource type="Texture2D" uid="uid://bsh2iymk5r4f7" path="res://Assets/UI/CharacterIcons/9.jpg" id="11_bdkb7"]
+[ext_resource type="Texture2D" uid="uid://cm3mglqln7yex" path="res://Assets/UI/CharacterIcons/10.jpg" id="12_57hfu"]
+[ext_resource type="Texture2D" uid="uid://b00t13o11l7o" path="res://Assets/UI/CharacterIcons/11.jpg" id="13_nl2dh"]
+[ext_resource type="Texture2D" uid="uid://dy52o6wvdc8u" path="res://Assets/UI/CharacterIcons/12.jpg" id="14_067td"]
+[ext_resource type="Texture2D" uid="uid://b17x84s1w4w6e" path="res://Assets/UI/CharacterIcons/13.jpg" id="15_fa3s2"]
+[ext_resource type="Texture2D" uid="uid://dkh3p8m1k5k2p" path="res://Assets/UI/CharacterIcons/14.jpg" id="16_qcinf"]
+[ext_resource type="Texture2D" uid="uid://cb3w6tq147m4" path="res://Assets/UI/CharacterIcons/15.jpg" id="17_owhay"]
+[ext_resource type="Texture2D" uid="uid://d1gklmqt5q4l4" path="res://Assets/UI/CharacterIcons/16.jpg" id="18_bdkb7"]
+[ext_resource type="Texture2D" uid="uid://bg1x0l5138f6" path="res://Assets/UI/CharacterIcons/17.jpg" id="19_owhay"]
+[ext_resource type="Texture2D" uid="uid://c7tqun0l1u418" path="res://Assets/UI/CharacterIcons/18.jpg" id="20_57hfu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6chx"]
-bg_color = Color(0.18, 0.18, 0.18, 0.95)
+bg_color = Color(0.16, 0.16, 0.16, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.12, 0.12, 0.12, 1)
+border_color = Color(0.1, 0.1, 0.1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-expand_margin_left = 6.0
-expand_margin_top = 6.0
-expand_margin_right = 6.0
-expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxsi4"]
-content_margin_left = 4.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(0.12, 0.12, 0.12, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynyum"]
-content_margin_left = 4.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbhsv"]
-bg_color = Color(0.08, 0.08, 0.08, 1)
+bg_color = Color(0.06, 0.06, 0.06, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.9, 0.9, 0.9, 1)
+border_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87box"]
 bg_color = Color(0.88, 0.88, 0.88, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3eyi"]
-content_margin_bottom = 10.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="Theme" id="Theme_sorhe"]
-default_font = ExtResource("2_ynyum")
-default_font_size = 25
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0gp8"]
-bg_color = Color(0.18, 0.18, 0.18, 0.95)
+bg_color = Color(0.12, 0.12, 0.12, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.12, 0.12, 0.12, 1)
+border_color = Color(0.2, 0.2, 0.2, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_067td"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sorhe"]
+bg_color = Color(0.85, 0.85, 0.85, 0.3)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_sorhe"]
+default_font = ExtResource("2_ynyum")
+default_font_size = 20
+ItemList/colors/font_color = Color(0.9, 0.9, 0.9, 1)
+ItemList/colors/font_selected_color = Color(1, 1, 1, 1)
+ItemList/styles/focus = SubResource("StyleBoxFlat_sorhe")
+ItemList/styles/panel = SubResource("StyleBoxFlat_u0gp8")
+ItemList/styles/selected = SubResource("StyleBoxFlat_sorhe")
+ItemList/styles/selected_focus = SubResource("StyleBoxFlat_sorhe")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fight"]
-bg_color = Color(0.24, 0.24, 0.24, 0.95)
+bg_color = Color(0.2, 0.2, 0.2, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -91,7 +109,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fight_hover"]
-bg_color = Color(0.35, 0.35, 0.35, 1)
+bg_color = Color(0.32, 0.32, 0.32, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -103,12 +121,12 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_p1"]
-bg_color = Color(0.2, 0.2, 0.2, 0.9)
+bg_color = Color(0.2, 0.2, 0.2, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.7, 0.7, 0.7, 1)
+border_color = Color(0.8, 0.8, 0.8, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -127,12 +145,12 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_ai"]
-bg_color = Color(0.2, 0.2, 0.2, 0.9)
+bg_color = Color(0.2, 0.2, 0.2, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.7, 0.7, 0.7, 1)
+border_color = Color(0.8, 0.8, 0.8, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -159,17 +177,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_067td")
 
+[node name="MenuBackButton" type="Button" parent="." unique_id=123456793]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.04
+anchor_right = 0.135
+anchor_bottom = 0.105
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ynyum")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_fight")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fight_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fight_hover")
+text = "MAIN MENU"
+
+[node name="StartFightButton" type="Button" parent="." unique_id=123456792]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38
+anchor_top = 0.04
+anchor_right = 0.62
+anchor_bottom = 0.115
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ynyum")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_fight")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fight_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fight_hover")
+text = "START BATTLE"
+
 [node name="FighterInfo" type="Panel" parent="." unique_id=2062762292]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.293
-anchor_right = 0.2
-anchor_bottom = 0.54
-offset_left = 72.0
-offset_top = -23.864014
-offset_right = 0.35998535
-offset_bottom = -24.16803
-size_flags_vertical = 3
+anchor_left = 0.025
+anchor_top = 0.14
+anchor_right = 0.235
+anchor_bottom = 0.52
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6chx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FighterInfo" unique_id=551196650]
@@ -177,151 +226,147 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
 
 [node name="FighterName" type="Label" parent="FighterInfo/VBoxContainer" unique_id=361653646]
 layout_mode = 2
-size_flags_vertical = 2
-theme_override_colors/font_color = Color(0.85882354, 0.84313726, 0.83137256, 1)
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_cxsi4")
 theme_override_styles/focus = SubResource("StyleBoxFlat_cxsi4")
-text = "FIGHTER"
+text = "BLOCK TITAN"
 vertical_alignment = 1
-text_overrun_behavior = 5
 
 [node name="FighterStats" type="VBoxContainer" parent="FighterInfo/VBoxContainer" unique_id=238580212]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 2
+theme_override_constants/separation = 4
 
 [node name="AttackStatItem" type="HBoxContainer" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=1501800192]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="FighterInfo/VBoxContainer/FighterStats/AttackStatItem" unique_id=963622136]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "ATTACK"
 
 [node name="StatProgress" type="ProgressBar" parent="FighterInfo/VBoxContainer/FighterStats/AttackStatItem" unique_id=1878181072]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 75.0
+show_percentage = false
 
 [node name="DefenseStatItem" type="HBoxContainer" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=936058674]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="FighterInfo/VBoxContainer/FighterStats/DefenseStatItem" unique_id=1323958523]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "DEFENSE"
 
 [node name="StatProgress" type="ProgressBar" parent="FighterInfo/VBoxContainer/FighterStats/DefenseStatItem" unique_id=1367898220]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 45.0
+show_percentage = false
 
 [node name="SpeedStatItem" type="HBoxContainer" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=444101826]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="FighterInfo/VBoxContainer/FighterStats/SpeedStatItem" unique_id=1959950340]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "SPEED"
 
 [node name="StatProgress" type="ProgressBar" parent="FighterInfo/VBoxContainer/FighterStats/SpeedStatItem" unique_id=383297071]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 23.0
+show_percentage = false
 
 [node name="SpecialStatItem" type="HBoxContainer" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=745807146]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="FighterInfo/VBoxContainer/FighterStats/SpecialStatItem" unique_id=1466664092]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "SPECIAL"
 
 [node name="StatProgress" type="ProgressBar" parent="FighterInfo/VBoxContainer/FighterStats/SpecialStatItem" unique_id=1588307214]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 90.0
+show_percentage = false
 
 [node name="SpecialAbilityLabel" type="Label" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=745807147]
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-text = "SPECIAL: FIREBALL"
+text = "ABILITY: EARTHQUAKE"
+autowrap_mode = 2
 
 [node name="KombatantInfo" type="Panel" parent="." unique_id=1377156693]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.8
-anchor_top = 0.293
-anchor_right = 1.0
-anchor_bottom = 0.54
-offset_left = 0.48791504
-offset_top = -23.864014
-offset_right = -70.0
-offset_bottom = -24.16803
-grow_horizontal = 0
+anchor_left = 0.765
+anchor_top = 0.14
+anchor_right = 0.975
+anchor_bottom = 0.52
+grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6chx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="KombatantInfo" unique_id=747511492]
@@ -329,239 +374,198 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
 
 [node name="CombatantName" type="Label" parent="KombatantInfo/VBoxContainer" unique_id=755120305]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.85882354, 0.84313726, 0.83137256, 1)
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_cxsi4")
 theme_override_styles/focus = SubResource("StyleBoxFlat_cxsi4")
-text = "KOMBATANT"
+text = "CYBER CHAMP"
 vertical_alignment = 1
-text_overrun_behavior = 5
 
 [node name="CombatantStats" type="VBoxContainer" parent="KombatantInfo/VBoxContainer" unique_id=825682939]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 2
+theme_override_constants/separation = 4
 
 [node name="AttackStatItem" type="HBoxContainer" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=1597190519]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats/AttackStatItem" unique_id=1968499376]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "ATTACK"
 
 [node name="StatProgress" type="ProgressBar" parent="KombatantInfo/VBoxContainer/CombatantStats/AttackStatItem" unique_id=267255493]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 75.0
+show_percentage = false
 
 [node name="DefenseStatItem" type="HBoxContainer" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=1081399658]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats/DefenseStatItem" unique_id=1132742093]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "DEFENSE"
 
 [node name="StatProgress" type="ProgressBar" parent="KombatantInfo/VBoxContainer/CombatantStats/DefenseStatItem" unique_id=963538096]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 45.0
+show_percentage = false
 
 [node name="SpeedStatItem" type="HBoxContainer" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=1345519594]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats/SpeedStatItem" unique_id=1830620595]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "SPEED"
 
 [node name="StatProgress" type="ProgressBar" parent="KombatantInfo/VBoxContainer/CombatantStats/SpeedStatItem" unique_id=1964129965]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 23.0
+show_percentage = false
 
 [node name="SpecialStatItem" type="HBoxContainer" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=170913927]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 8
 
 [node name="StatName" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats/SpecialStatItem" unique_id=830389056]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ynyum")
 text = "SPECIAL"
 
 [node name="SpecialProgress" type="ProgressBar" parent="KombatantInfo/VBoxContainer/CombatantStats/SpecialStatItem" unique_id=249291270]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 90.0
+show_percentage = false
 
 [node name="SpecialAbilityLabel" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=745807148]
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-text = "SPECIAL: LASER BLAST"
+text = "ABILITY: LASER BLAST"
+autowrap_mode = 2
 
-[node name="TittleLabel" type="HBoxContainer" parent="." unique_id=190618877]
+[node name="SelectorTabs" type="HBoxContainer" parent="." unique_id=123456789]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.42000002
-anchor_right = 0.50200003
-anchor_bottom = 0.572
-offset_left = -158.0
-offset_top = -30.660004
-offset_right = 179.69598
-offset_bottom = -32.156006
+anchor_left = 0.28
+anchor_top = 0.535
+anchor_right = 0.72
+anchor_bottom = 0.595
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="Label" type="Label" parent="TittleLabel" unique_id=1300275818]
+[node name="P1TabButton" type="Button" parent="SelectorTabs" unique_id=123456790]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 70
-text = "BLOCK"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_p1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_p1_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tab_p1_hover")
+text = "PLAYER 1 (FIGHTER)"
 
-[node name="Label2" type="Label" parent="TittleLabel" unique_id=1203191625]
+[node name="AITabButton" type="Button" parent="SelectorTabs" unique_id=123456791]
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxFlat_l3eyi")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l3eyi")
-text = "|"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label3" type="Label" parent="TittleLabel" unique_id=1483655060]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 70
-text = "KOMBAT"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BottomChooseLabel" type="Label" parent="." unique_id=792182472]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.33100003
-anchor_top = 0.92100006
-anchor_right = 0.669
-anchor_bottom = 1.0
-offset_left = -0.31204224
-offset_top = 10.191956
-offset_right = 0.31195068
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 35
-text = "CHOOSE YOUR BLOCKY CHARACTER"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_ai_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tab_ai_hover")
+text = "COMBATANT (AI)"
 
 [node name="CharacterSelectControl" type="Control" parent="." unique_id=2045049341]
 layout_mode = 1
-anchor_left = 0.15900001
-anchor_top = 0.59900004
-anchor_right = 0.84900004
-anchor_bottom = 0.92700005
-offset_left = -0.16801453
-offset_top = -16.152039
-offset_right = -0.048034668
-offset_bottom = -15.696045
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.61
+anchor_right = 0.88
+anchor_bottom = 0.92
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CharacterSelectControl" unique_id=316039488]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -37.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FightersList" type="ItemList" parent="CharacterSelectControl/Panel" unique_id=1556584404]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.18100001
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 43.749992
-offset_right = 3.0
-offset_bottom = 9.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_sorhe")
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 22
 theme_override_styles/panel = SubResource("StyleBoxFlat_u0gp8")
-theme_override_styles/focus = SubResource("StyleBoxTexture_067td")
 allow_search = false
 auto_width = true
 auto_height = true
@@ -569,9 +573,9 @@ text_overrun_behavior = 4
 item_count = 18
 max_columns = 9
 same_column_width = true
-fixed_column_width = 100
+fixed_column_width = 96
 icon_mode = 0
-icon_scale = 0.5
+icon_scale = 0.45
 item_0/text = "Fighter1"
 item_0/icon = ExtResource("3_ln0my")
 item_1/text = "Fighter2"
@@ -609,76 +613,24 @@ item_16/icon = ExtResource("19_owhay")
 item_17/text = "Fighter18"
 item_17/icon = ExtResource("20_57hfu")
 
-[node name="StartFightButton" type="Button" parent="." unique_id=123456792]
+[node name="BottomChooseLabel" type="Label" parent="." unique_id=792182472]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.38
-anchor_top = 0.22500001
-anchor_right = 0.62
-anchor_bottom = 0.305
-offset_top = 0.11999512
-offset_bottom = 0.11999512
+anchor_left = 0.2
+anchor_top = 0.93
+anchor_right = 0.8
+anchor_bottom = 0.985
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 0.7, 1)
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 38
-theme_override_styles/normal = SubResource("StyleBoxFlat_fight")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fight_hover")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fight_hover")
-text = "START BATTLE"
+theme_override_font_sizes/font_size = 32
+text = "SELECT YOUR FIGHTER (PLAYER 1)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MenuBackButton" type="Button" parent="." unique_id=123456793]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.04
-anchor_top = 0.04
-anchor_right = 0.15
-anchor_bottom = 0.11
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxFlat_fight")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fight_hover")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fight_hover")
-text = "MAIN MENU"
-
-[node name="SelectorTabs" type="HBoxContainer" parent="." unique_id=123456789]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.28
-anchor_top = 0.49
-anchor_right = 0.72
-anchor_bottom = 0.55
-grow_horizontal = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="P1TabButton" type="Button" parent="SelectorTabs" unique_id=123456790]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxFlat_tab_p1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_p1_hover")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tab_p1_hover")
-text = "PLAYER 1 (FIGHTER)"
-
-[node name="AITabButton" type="Button" parent="SelectorTabs" unique_id=123456791]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxFlat_tab_ai")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_ai_hover")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tab_ai_hover")
-text = "COMBATANT (AI)"
-
-[connection signal="item_activated" from="CharacterSelectControl/Panel/FightersList" to="." method="_on_fighters_list_item_activated"]
-[connection signal="item_selected" from="CharacterSelectControl/Panel/FightersList" to="." method="_on_fighters_list_item_selected"]
-[connection signal="pressed" from="StartFightButton" to="." method="_on_start_fight_button_pressed"]
 [connection signal="pressed" from="MenuBackButton" to="." method="_on_menu_back_button_pressed"]
+[connection signal="pressed" from="StartFightButton" to="." method="_on_start_fight_button_pressed"]
 [connection signal="pressed" from="SelectorTabs/P1TabButton" to="." method="_on_p1_tab_button_pressed"]
 [connection signal="pressed" from="SelectorTabs/AITabButton" to="." method="_on_ai_tab_button_pressed"]
+[connection signal="item_activated" from="CharacterSelectControl/Panel/FightersList" to="." method="_on_fighters_list_item_activated"]
+[connection signal="item_selected" from="CharacterSelectControl/Panel/FightersList" to="." method="_on_fighters_list_item_selected"]
