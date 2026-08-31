@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://b4pgpv176oc0k"]
 
-[ext_resource type="Script" path="res://Scripts/BoxingRing/battle_manager.gd" id="1_manager"]
 [ext_resource type="PackedScene" uid="uid://mbeqyrmavsbp" path="res://Scenes/Characters/character.tscn" id="1_2qyfu"]
-[ext_resource type="Script" path="res://Scripts/BoxingRing/battle_camera.gd" id="2_camera"]
+[ext_resource type="Script" uid="uid://b5b82t66f0vx3" path="res://Scripts/BoxingRing/battle_manager.gd" id="1_manager"]
+[ext_resource type="Script" uid="uid://buo2nrqch6puj" path="res://Scripts/BoxingRing/battle_camera.gd" id="2_camera"]
 [ext_resource type="PackedScene" uid="uid://b5hudbattle01" path="res://Scenes/UI/battle_hud.tscn" id="3_hud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2qyfu"]
@@ -701,6 +701,7 @@ environment = SubResource("Environment_mqsgl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=637655396]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1642141185]
