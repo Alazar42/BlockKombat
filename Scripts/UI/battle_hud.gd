@@ -141,9 +141,11 @@ func show_game_over(is_p1_winner: bool, title: String) -> void:
 	result_title_label.text = title
 	
 	if is_p1_winner:
-		winner_label.text = p1_name_label.text + " WINS!"
+		winner_label.text = "YOU WIN!"
+		winner_label.modulate = Color(1.0, 0.92, 0.2, 1.0)
 	else:
-		winner_label.text = p2_name_label.text + " WINS!"
+		winner_label.text = "YOU LOSE!"
+		winner_label.modulate = Color(1.0, 0.3, 0.3, 1.0)
 	
 	rematch_btn.grab_focus()
 

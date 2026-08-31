@@ -28,6 +28,9 @@ size = Vector3(19.458649, 2.3770752, 19.458649)
 height = 2.6386719
 radius = 0.75341797
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osf40"]
+albedo_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6eyo"]
 resource_name = "Material.003"
 cull_mode = 2
@@ -737,6 +740,7 @@ transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 
 transform = Transform3D(9.762625, 0, 0, 0, 1.1795627, 0, 0, 0, 9.762625, 0, -1.1746502, 0)
 
 [node name="Object_92" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Cube_44" unique_id=1644967925]
+material_override = SubResource("StandardMaterial3D_osf40")
 mesh = SubResource("ArrayMesh_61xl0")
 
 [node name="Object_93" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Cube_44" unique_id=1994355570]
