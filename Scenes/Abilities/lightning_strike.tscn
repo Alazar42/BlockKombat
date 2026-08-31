@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://abls005lightning"]
+
+[ext_resource type="Script" uid="uid://c8lsscript01" path="res://Scripts/Abilities/lightning_strike.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://b0lsshader01" path="res://Assets/Shaders/lightning.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_light"]
+render_priority = 1
+shader = ExtResource("2_shader")
+shader_parameter/bolt_color = Color(1, 1, 0.6, 1)
+shader_parameter/flicker_speed = 30.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bolt"]
+material = SubResource("ShaderMaterial_light")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 12.0
+
+[node name="LightningStrike" type="Node3D" unique_id=204001]
+script = ExtResource("1_script")
+
+[node name="BoltMesh" type="MeshInstance3D" parent="." unique_id=204002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+mesh = SubResource("CylinderMesh_bolt")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=204003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 1, 0.7, 1)
+light_energy = 5.0
+omni_range = 6.0

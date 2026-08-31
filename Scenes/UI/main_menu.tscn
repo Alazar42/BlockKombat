@@ -1,0 +1,271 @@
+[gd_scene format=3 uid="uid://c7mainmenu01"]
+
+[ext_resource type="Script" uid="uid://bhmainscript01" path="res://Scripts/UI/main_menu.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://caa063h7e0ojo" path="res://Assets/Fonts/Jersey_10/Jersey10-Regular.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_dark"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.18, 0.18, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.12, 0.12, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.24, 0.24, 0.24, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.35, 0.35, 0.35, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.18, 0.18, 0.18, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.9, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_size = 20
+
+[node name="MainMenu" type="Control" unique_id=110101]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="Panel" parent="." unique_id=110102]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg_dark")
+
+[node name="TitleContainer" type="VBoxContainer" parent="." unique_id=110103]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.08
+anchor_right = 0.8
+anchor_bottom = 0.32
+grow_horizontal = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="MainTitle" type="Label" parent="TitleContainer" unique_id=110104]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 90
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+text = "BLOCK  KOMBAT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="TitleContainer" unique_id=110105]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+text = "3D ARCADE FIGHTING ARENA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuContainer" type="Panel" parent="." unique_id=110106]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.36
+anchor_right = 0.65
+anchor_bottom = 0.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer" unique_id=110107]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 28.0
+offset_right = -32.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ButtonGroup" type="VBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=110108]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="StartGameButton" type="Button" parent="MenuContainer/VBoxContainer/ButtonGroup" unique_id=110109]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "START GAME"
+
+[node name="QuickFightButton" type="Button" parent="MenuContainer/VBoxContainer/ButtonGroup" unique_id=110110]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "QUICK MATCH"
+
+[node name="ControlsButton" type="Button" parent="MenuContainer/VBoxContainer/ButtonGroup" unique_id=110111]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "HOW TO PLAY"
+
+[node name="QuitButton" type="Button" parent="MenuContainer/VBoxContainer/ButtonGroup" unique_id=110112]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "QUIT"
+
+[node name="ControlsModal" type="Panel" parent="." unique_id=110113]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.2
+anchor_right = 0.75
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlsModal" unique_id=110114]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 28.0
+offset_right = -40.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ModalTitle" type="Label" parent="ControlsModal/VBoxContainer" unique_id=110115]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 46
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="ControlsList" type="VBoxContainer" parent="ControlsModal/VBoxContainer" unique_id=110116]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MoveLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110117]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "MOVE:  W, A, S, D  or  ARROW KEYS"
+
+[node name="PunchLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110118]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "PUNCH / COMBO:  LEFT CLICK  or  J"
+
+[node name="KickLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110119]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "HEAVY KICK:  RIGHT CLICK  or  K"
+
+[node name="BlockLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110120]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "GUARD / BLOCK:  SPACE  or  L  (-80% DAMAGE)"
+
+[node name="SpecialLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110123]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "SPECIAL ATTACK:  E  or  U  or  MIDDLE CLICK"
+
+[node name="SprintLabel" type="Label" parent="ControlsModal/VBoxContainer/ControlsList" unique_id=110121]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+text = "SPRINT:  HOLD SHIFT"
+
+[node name="CloseControlsButton" type="Button" parent="ControlsModal/VBoxContainer" unique_id=110122]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "CLOSE"

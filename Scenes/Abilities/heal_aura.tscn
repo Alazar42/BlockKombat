@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://abha003healaura"]
+
+[ext_resource type="Script" uid="uid://c8hascript01" path="res://Scripts/Abilities/heal_aura.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://b0hashader01" path="res://Assets/Shaders/heal_aura.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_heal"]
+render_priority = 1
+shader = ExtResource("2_shader")
+shader_parameter/aura_color = Color(0.2, 1, 0.4, 0.7)
+shader_parameter/divine_gold = Color(1, 0.9, 0.3, 0.9)
+shader_parameter/flow_speed = 3.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aura"]
+material = SubResource("ShaderMaterial_heal")
+top_radius = 1.3
+bottom_radius = 1.3
+height = 0.25
+
+[node name="HealAura" type="Node3D" unique_id=202001]
+script = ExtResource("1_script")
+
+[node name="AuraMesh" type="MeshInstance3D" parent="." unique_id=202002]
+mesh = SubResource("CylinderMesh_aura")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=202003]
+light_color = Color(0.3, 1, 0.5, 1)
+light_energy = 3.5
+omni_range = 4.0
