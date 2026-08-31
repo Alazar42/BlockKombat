@@ -668,7 +668,9 @@ func play_animation(anim_name: String, blend_time: float = ANIMATION_BLEND_TIME)
 		return
 	
 	if anim_name != "die":
-		animation_player.speed_scale = 1.0
+		var p = get_parent()
+		if not (p and p.name == "CharacterShowcase"):
+			animation_player.speed_scale = 1.0
 	
 	if animation_player.has_animation(anim_name):
 		if animation_player.current_animation != anim_name or not animation_player.is_playing():
