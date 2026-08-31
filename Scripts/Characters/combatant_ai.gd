@@ -103,12 +103,6 @@ func _update_ai_state(dist: float, delta: float) -> void:
 
 	var current_time = Time.get_ticks_msec() / 1000.0
 
-	# AI Decision tree based on distance
-	if character.can_special() and dist <= 6.5 and current_time >= next_action_time and randf() < 0.4:
-		character.execute_special_attack()
-		next_action_time = current_time + randf_range(1.2, 2.2)
-		return
-
 	if dist > 2.3:
 		# Approach target
 		var dir = (target.global_position - character.global_position).normalized()
@@ -124,11 +118,7 @@ func _update_ai_state(dist: float, delta: float) -> void:
 		# In striking range - Attack, Strafe, or Combos
 		if current_time >= next_action_time:
 			var roll = randf()
-			if roll < 0.25 and character.can_special():
-				# Execute special attack
-				character.execute_special_attack()
-				next_action_time = current_time + randf_range(1.0, 2.0)
-			elif roll < 0.6:
+			if roll < 0.6:
 				# Execute punch combo
 				character.execute_punch()
 				next_action_time = current_time + randf_range(0.35, 0.7)

@@ -216,7 +216,7 @@ anchors_preset = -1
 anchor_left = 0.025
 anchor_top = 0.14
 anchor_right = 0.235
-anchor_bottom = 0.52
+anchor_bottom = 0.40
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6chx")
@@ -324,47 +324,13 @@ step = 1.0
 value = 23.0
 show_percentage = false
 
-[node name="SpecialStatItem" type="HBoxContainer" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=745807146]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="StatName" type="Label" parent="FighterInfo/VBoxContainer/FighterStats/SpecialStatItem" unique_id=1466664092]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 17
-theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-text = "SPECIAL"
-
-[node name="StatProgress" type="ProgressBar" parent="FighterInfo/VBoxContainer/FighterStats/SpecialStatItem" unique_id=1588307214]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
-step = 1.0
-value = 90.0
-show_percentage = false
-
-[node name="SpecialAbilityLabel" type="Label" parent="FighterInfo/VBoxContainer/FighterStats" unique_id=745807147]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 15
-theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-text = "ABILITY: EARTHQUAKE"
-autowrap_mode = 2
-
 [node name="KombatantInfo" type="Panel" parent="." unique_id=1377156693]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.765
 anchor_top = 0.14
 anchor_right = 0.975
-anchor_bottom = 0.52
+anchor_bottom = 0.40
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6chx")
@@ -471,40 +437,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
 step = 1.0
 value = 23.0
 show_percentage = false
-
-[node name="SpecialStatItem" type="HBoxContainer" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=170913927]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="StatName" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats/SpecialStatItem" unique_id=830389056]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 17
-theme_override_styles/normal = SubResource("StyleBoxFlat_ynyum")
-text = "SPECIAL"
-
-[node name="SpecialProgress" type="ProgressBar" parent="KombatantInfo/VBoxContainer/CombatantStats/SpecialStatItem" unique_id=249291270]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_styles/background = SubResource("StyleBoxFlat_fbhsv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_87box")
-step = 1.0
-value = 90.0
-show_percentage = false
-
-[node name="SpecialAbilityLabel" type="Label" parent="KombatantInfo/VBoxContainer/CombatantStats" unique_id=745807148]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ynyum")
-theme_override_font_sizes/font_size = 15
-theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-text = "ABILITY: LASER BLAST"
-autowrap_mode = 2
 
 [node name="SelectorTabs" type="HBoxContainer" parent="." unique_id=123456789]
 layout_mode = 1

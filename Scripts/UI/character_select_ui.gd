@@ -94,36 +94,27 @@ func _input(event: InputEvent) -> void:
 			_on_p1_tab_button_pressed()
 
 func update_ui(character: Dictionary, player_type: String) -> void:
-	var spec_name = character.get("special_name", "Special")
-	var spec_desc = character.get("special_desc", "")
-	var ability_text = "ABILITY: " + spec_name.to_upper()
-	if not spec_desc.is_empty():
-		ability_text += " (" + spec_desc + ")"
-	
 	match player_type:
 		"Fighter":
 			if fighter_name:
 				fighter_name.text = character.name
 			if fighter_stats:
-				fighter_stats.get_node("AttackStatItem/StatProgress").value = character.attack.to_int()
-				fighter_stats.get_node("DefenseStatItem/StatProgress").value = character.defense.to_int()
-				fighter_stats.get_node("SpeedStatItem/StatProgress").value = character.speed.to_int()
-				fighter_stats.get_node("SpecialStatItem/StatProgress").value = character.special.to_int()
-				if fighter_stats.has_node("SpecialAbilityLabel"):
-					fighter_stats.get_node("SpecialAbilityLabel").text = ability_text
+				if fighter_stats.has_node("AttackStatItem/StatProgress"):
+					fighter_stats.get_node("AttackStatItem/StatProgress").value = character.attack.to_int()
+				if fighter_stats.has_node("DefenseStatItem/StatProgress"):
+					fighter_stats.get_node("DefenseStatItem/StatProgress").value = character.defense.to_int()
+				if fighter_stats.has_node("SpeedStatItem/StatProgress"):
+					fighter_stats.get_node("SpeedStatItem/StatProgress").value = character.speed.to_int()
 		"Combatant":
 			if combatant_name:
 				combatant_name.text = character.name
 			if combatant_stats:
-				combatant_stats.get_node("AttackStatItem/StatProgress").value = character.attack.to_int()
-				combatant_stats.get_node("DefenseStatItem/StatProgress").value = character.defense.to_int()
-				combatant_stats.get_node("SpeedStatItem/StatProgress").value = character.speed.to_int()
-				if combatant_stats.has_node("SpecialStatItem/SpecialProgress"):
-					combatant_stats.get_node("SpecialStatItem/SpecialProgress").value = character.special.to_int()
-				elif combatant_stats.has_node("SpecialStatItem/StatProgress"):
-					combatant_stats.get_node("SpecialStatItem/StatProgress").value = character.special.to_int()
-				if combatant_stats.has_node("SpecialAbilityLabel"):
-					combatant_stats.get_node("SpecialAbilityLabel").text = ability_text
+				if combatant_stats.has_node("AttackStatItem/StatProgress"):
+					combatant_stats.get_node("AttackStatItem/StatProgress").value = character.attack.to_int()
+				if combatant_stats.has_node("DefenseStatItem/StatProgress"):
+					combatant_stats.get_node("DefenseStatItem/StatProgress").value = character.defense.to_int()
+				if combatant_stats.has_node("SpeedStatItem/StatProgress"):
+					combatant_stats.get_node("SpeedStatItem/StatProgress").value = character.speed.to_int()
 
 func _on_start_fight_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/BoxingRing/boxing_ring.tscn")

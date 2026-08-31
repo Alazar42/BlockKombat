@@ -23,8 +23,6 @@ extends CharacterBody3D
 	"character_r"
 ) var character_type: String = "character_a"
 @export var character_name: String = "Fighter"
-@export var special_type: String = "fireball"
-@export var special_name: String = "Fireball"
 
 const CHARACTER_TEXTURES := {
 	"character_a": "res://Assets/Models/KennyBlockyCharacters/Models/FBX format/Textures/texture-a.png",
@@ -47,16 +45,6 @@ const CHARACTER_TEXTURES := {
 	"character_r": "res://Assets/Models/KennyBlockyCharacters/Models/FBX format/Textures/texture-r.png"
 }
 
-# Preloaded Ability Prefabs
-const PREFAB_FIREBALL = preload("res://Scenes/Abilities/fireball.tscn")
-const PREFAB_ICE_FREEZE = preload("res://Scenes/Abilities/ice_freeze.tscn")
-const PREFAB_HEAL_AURA = preload("res://Scenes/Abilities/heal_aura.tscn")
-const PREFAB_GUNFIRE = preload("res://Scenes/Abilities/gunfire_blast.tscn")
-const PREFAB_LIGHTNING = preload("res://Scenes/Abilities/lightning_strike.tscn")
-const PREFAB_GROUND_SMASH = preload("res://Scenes/Abilities/ground_smash.tscn")
-const PREFAB_LASER_BEAM = preload("res://Scenes/Abilities/laser_beam.tscn")
-const PREFAB_SHIELD_DOME = preload("res://Scenes/Abilities/shield_dome.tscn")
-
 # Material Cache for smooth loading
 static var _material_cache: Dictionary = {}
 
@@ -74,17 +62,12 @@ const KICK_RANGE = 3.0
 const BLOCK_DAMAGE_RATIO = 0.2
 const ANIMATION_BLEND_TIME = 0.12
 
-# Special Ability 10-Hit Meter
-const MAX_SPECIAL_METER: float = 10.0
-var special_meter: float = 0.0
-
 # State Variables
 enum CharacterState {
 	IDLE,
 	MOVING,
 	PUNCHING,
 	KICKING,
-	SPECIAL,
 	BLOCKING,
 	HURT,
 	DEAD,
@@ -95,8 +78,6 @@ var current_state: CharacterState = CharacterState.IDLE
 var health: float = 250.0
 var max_health: float = 250.0
 var is_blocking: bool = false
-var is_frozen: bool = false
-var shield_hp: float = 0.0
 
 var combo_count: int = 0
 var last_attack_time: float = 0.0
@@ -113,7 +94,6 @@ var target_node: CharacterBody3D
 
 # Signals
 signal health_changed(current_hp: float, max_hp: float)
-signal special_meter_changed(current_meter: float, max_meter: float)
 signal state_changed(new_state: CharacterState)
 signal combo_updated(combo_count: int)
 signal character_died(character: CharacterBody3D)
@@ -123,7 +103,6 @@ func _ready() -> void:
 	find_and_cache_animation_player()
 	load_character()
 	emit_signal("health_changed", health, max_health)
-	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
 
 func get_forward_vector() -> Vector3:
 	return global_transform.basis.x.normalized()
@@ -184,8 +163,6 @@ func apply_character_data(char_data: Dictionary) -> void:
 		return
 	character_name = char_data.get("name", "Fighter")
 	character_type = char_data.get("key", "character_a")
-	special_type = char_data.get("special_type", "fireball")
-	special_name = char_data.get("special_name", "Special Attack")
 	
 	if char_data.has("texture"):
 		set_character_texture(char_data.texture)
@@ -202,13 +179,7 @@ func apply_character_data(char_data: Dictionary) -> void:
 	
 	health = 250.0
 	max_health = 250.0
-	special_meter = 0.0
 	emit_signal("health_changed", health, max_health)
-	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
-
-func add_special_meter(amount: float) -> void:
-	special_meter = clamp(special_meter + amount, 0.0, MAX_SPECIAL_METER)
-	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
 
 func _physics_process(delta: float) -> void:
 	var p = get_parent()
@@ -219,14 +190,6 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 			move_and_slide()
-		return
-
-	if is_frozen:
-		velocity.x = move_toward(velocity.x, 0, 15.0 * delta)
-		velocity.z = move_toward(velocity.z, 0, 15.0 * delta)
-		if not is_on_floor():
-			velocity += get_gravity() * delta
-		move_and_slide()
 		return
 
 	# Handle gravity
@@ -251,7 +214,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_player_movement(delta: float) -> void:
-	if current_state in [CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.SPECIAL, CharacterState.HURT, CharacterState.DEAD]:
+	if current_state in [CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.HURT, CharacterState.DEAD]:
 		velocity.x = move_toward(velocity.x, 0, 15.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, 15.0 * delta)
 		return
@@ -293,23 +256,18 @@ func handle_player_movement(delta: float) -> void:
 				var target_rot = get_facing_rotation(opp_dir)
 				rotation.y = lerp_angle(rotation.y, target_rot, ROTATION_SPEED * delta)
 
-		if current_state not in [CharacterState.BLOCKING, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.SPECIAL, CharacterState.HURT]:
+		if current_state not in [CharacterState.BLOCKING, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.HURT]:
 			set_state(CharacterState.IDLE)
 			play_animation("idle", ANIMATION_BLEND_TIME)
 
 func handle_player_combat(_delta: float) -> void:
 	# Block
-	if Input.is_action_pressed("block") and current_state not in [CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.SPECIAL, CharacterState.HURT]:
+	if Input.is_action_pressed("block") and current_state not in [CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.HURT]:
 		start_blocking()
 	elif Input.is_action_just_released("block") and is_blocking:
 		stop_blocking()
 
 	if is_blocking:
-		return
-
-	# Special Attack (Requires 10 hits full meter)
-	if Input.is_action_just_pressed("special") and can_special():
-		execute_special_attack()
 		return
 
 	# Punch
@@ -325,9 +283,7 @@ func handle_player_combat(_delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 func can_attack() -> bool:
-	if current_state in [CharacterState.DEAD, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.SPECIAL, CharacterState.HURT, CharacterState.VICTORY]:
-		return false
-	if is_frozen:
+	if current_state in [CharacterState.DEAD, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.HURT, CharacterState.VICTORY]:
 		return false
 	
 	var current_time = Time.get_ticks_msec() / 1000.0
@@ -335,11 +291,6 @@ func can_attack() -> bool:
 		return false
 	
 	return true
-
-func can_special() -> bool:
-	if not can_attack():
-		return false
-	return (special_meter >= MAX_SPECIAL_METER)
 
 # Combat Functions
 func execute_punch() -> void:
@@ -393,167 +344,6 @@ func execute_kick() -> void:
 		set_state(CharacterState.IDLE)
 		play_animation("idle", ANIMATION_BLEND_TIME)
 
-# Special Attack Logic
-func execute_special_attack() -> void:
-	set_state(CharacterState.SPECIAL)
-	special_meter = 0.0
-	emit_signal("special_meter_changed", special_meter, MAX_SPECIAL_METER)
-	_ensure_target()
-	
-	if target_node and is_instance_valid(target_node):
-		var dir = (target_node.global_position - global_position).normalized()
-		dir.y = 0
-		if dir.length() > 0.1:
-			rotation.y = get_facing_rotation(dir)
-
-	var fwd = get_forward_vector()
-	var spawn_pos = global_position + Vector3(0, 1.1, 0) + fwd * 0.8
-	var parent_scene = get_parent()
-
-	match special_type:
-		"fireball":
-			play_animation("attack-melee-right", 0.08)
-			var fb = PREFAB_FIREBALL.instantiate()
-			parent_scene.add_child(fb)
-			fb.global_position = spawn_pos
-			fb.rotation.y = rotation.y
-			fb.setup(self, target_node, fwd, 38.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.35).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"freeze":
-			play_animation("attack-melee-left", 0.08)
-			var ice = PREFAB_ICE_FREEZE.instantiate()
-			parent_scene.add_child(ice)
-			ice.global_position = spawn_pos
-			ice.rotation.y = rotation.y
-			ice.setup(self, target_node, fwd, 24.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.35).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"heal":
-			play_animation("holding-both", 0.1)
-			var aura = PREFAB_HEAL_AURA.instantiate()
-			add_child(aura)
-			aura.position = Vector3.ZERO
-			aura.setup(self, 70.0)
-			
-			await get_tree().create_timer(0.55).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"gunfire":
-			play_animation("attack-melee-right", 0.05)
-			var shot = PREFAB_GUNFIRE.instantiate()
-			parent_scene.add_child(shot)
-			shot.global_position = spawn_pos
-			shot.rotation.y = rotation.y
-			shot.setup(self, target_node, fwd, 32.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.25).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"lightning":
-			play_animation("emote-yes", 0.1)
-			if target_node and is_instance_valid(target_node):
-				var bolt = PREFAB_LIGHTNING.instantiate()
-				parent_scene.add_child(bolt)
-				bolt.setup(self, target_node, 38.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.4).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"ground_smash":
-			play_animation("attack-kick-left", 0.08)
-			await get_tree().create_timer(0.18).timeout
-			var slam = PREFAB_GROUND_SMASH.instantiate()
-			parent_scene.add_child(slam)
-			slam.global_position = global_position
-			slam.setup(self, target_node, 34.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.35).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"laser":
-			play_animation("holding-both", 0.1)
-			var beam = PREFAB_LASER_BEAM.instantiate()
-			parent_scene.add_child(beam)
-			beam.global_position = spawn_pos
-			beam.rotation.y = rotation.y
-			beam.setup(self, target_node, fwd, 36.0 * attack_multiplier)
-			
-			await get_tree().create_timer(0.4).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"shield":
-			play_animation("holding-both", 0.1)
-			var dome = PREFAB_SHIELD_DOME.instantiate()
-			add_child(dome)
-			dome.position = Vector3.ZERO
-			dome.setup(self, 100.0)
-			
-			await get_tree().create_timer(0.5).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"teleport":
-			play_animation("emote-no", 0.05)
-			visible = false
-			await get_tree().create_timer(0.12).timeout
-			if target_node and is_instance_valid(target_node):
-				var opp_fwd = target_node.get_forward_vector()
-				var behind_pos = target_node.global_position - opp_fwd * 1.5
-				behind_pos.x = clamp(behind_pos.x, -RING_LIMIT, RING_LIMIT)
-				behind_pos.z = clamp(behind_pos.z, -RING_LIMIT, RING_LIMIT)
-				global_position = behind_pos
-				var dir = (target_node.global_position - global_position).normalized()
-				rotation.y = get_facing_rotation(dir)
-			visible = true
-			play_animation("attack-melee-right", 0.05)
-			check_and_apply_hit(2.8, 34.0 * attack_multiplier, "teleport_strike", 6.0)
-			
-			await get_tree().create_timer(0.3).timeout
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-		"tornado":
-			for i in range(4):
-				play_animation("attack-melee-right" if i % 2 == 0 else "attack-melee-left", 0.05)
-				rotation.y += deg_to_rad(90)
-				check_and_apply_hit(2.8, 9.0 * attack_multiplier, "tornado", 3.0)
-				await get_tree().create_timer(0.08).timeout
-			
-			if current_state == CharacterState.SPECIAL:
-				set_state(CharacterState.IDLE)
-				play_animation("idle", ANIMATION_BLEND_TIME)
-
-func freeze_in_place(duration: float = 1.8) -> void:
-	is_frozen = true
-	if animation_player:
-		animation_player.pause()
-	
-	await get_tree().create_timer(duration).timeout
-	is_frozen = false
-	if animation_player:
-		animation_player.play()
-
 func _ensure_target() -> void:
 	if not target_node or not is_instance_valid(target_node):
 		var fighters = get_tree().get_nodes_in_group("fighters")
@@ -578,11 +368,11 @@ func check_and_apply_hit(max_range: float, raw_damage: float, attack_type: Strin
 		if dot > -0.2 or distance <= 2.0:
 			var hit_dir = dir_to_target
 			target_node.take_damage(raw_damage, attack_type, hit_dir, knockback_power)
-			add_special_meter(1.0) # Adds 1 hit towards 10-hit super meter!
-			emit_signal("character_hit", raw_damage, combo_count >= 3, target_node.global_position + Vector3(0, 1.2, 0))
+			var hit_pos = target_node.global_position + Vector3(0, 1.2, 0)
+			emit_signal("character_hit", raw_damage, combo_count >= 3, hit_pos)
 
 func start_blocking() -> void:
-	if current_state not in [CharacterState.DEAD, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.SPECIAL, CharacterState.HURT]:
+	if current_state not in [CharacterState.DEAD, CharacterState.PUNCHING, CharacterState.KICKING, CharacterState.HURT]:
 		is_blocking = true
 		set_state(CharacterState.BLOCKING)
 		play_animation("holding-both", 0.1)
@@ -600,15 +390,6 @@ func take_damage(raw_damage: float, attack_type: String = "unknown", from_dir: V
 	var def = max(0.4, defense_multiplier)
 	var actual_damage = raw_damage / def
 	
-	# Shield absorption
-	if shield_hp > 0:
-		if shield_hp >= actual_damage:
-			shield_hp -= actual_damage
-			return
-		else:
-			actual_damage -= shield_hp
-			shield_hp = 0.0
-	
 	# Apply guard damage reduction
 	if is_blocking:
 		actual_damage *= BLOCK_DAMAGE_RATIO
@@ -620,9 +401,6 @@ func take_damage(raw_damage: float, attack_type: String = "unknown", from_dir: V
 		combo_count = 0
 		emit_signal("combo_updated", 0)
 	
-	# Gain 0.5 meter when taking damage
-	add_special_meter(0.5)
-	
 	health -= actual_damage
 	health = max(health, 0.0)
 	emit_signal("health_changed", health, max_health)
@@ -630,7 +408,7 @@ func take_damage(raw_damage: float, attack_type: String = "unknown", from_dir: V
 	if health <= 0.0:
 		die()
 	else:
-		if not is_blocking and current_state != CharacterState.SPECIAL:
+		if not is_blocking:
 			trigger_hurt_reaction()
 
 func trigger_hurt_reaction() -> void:
@@ -645,7 +423,6 @@ func trigger_hurt_reaction() -> void:
 func die() -> void:
 	set_state(CharacterState.DEAD)
 	is_blocking = false
-	is_frozen = false
 	find_and_cache_animation_player()
 	if animation_player:
 		animation_player.speed_scale = 0.35
