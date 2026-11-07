@@ -1,3 +1,6 @@
 {"level":"info","message":"3D Asset Processing MCP Server v0.0.1-beta.6 started","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:01:58.451Z"}
 {"level":"info","message":"Available tools: analyze_model, validate_model, gltf-pipeline-executor, gltf-transform-executor","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:01:58.452Z"}
 {"level":"info","message":"Server ready for connections...","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:01:58.452Z"}
+{"level":"info","message":"3D Asset Processing MCP Server v0.0.1-beta.6 started","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:10:37.525Z"}
+{"level":"info","message":"Available tools: analyze_model, validate_model, gltf-pipeline-executor, gltf-transform-executor","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:10:37.527Z"}
+{"level":"info","message":"Server ready for connections...","service":"3d-asset-processing-mcp","timestamp":"2026-11-07T03:10:37.527Z"}
